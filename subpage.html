@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  />
+  <title>STG Subpage</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="subpage.css" />
+</head>
+<body>
+  <div class="stg-container"></div>
+
+  <!-- full‐screen “content” UI -->
+  <img
+    src="content.png"
+    id="content-ui"
+    class="content-ui"
+    alt="Content UI"
+  >
+
+  <!-- back‐to‐home / forward button -->
+  <img
+    src="xb.png"
+    id="btn-xb"
+    class="button"
+    alt="XB button"
+  >
+
+  <!-- Play/Pause toggle for WTH.mp3 -->
+  <button id="audio-toggle">▶︎</button>
+
+  <!-- NEW: Linktree button -->
+  <a id="linktree" href="https://linktr.ee/choprtonytony" target="_blank">Linktree</a>
+
+  <script>
+    // Music setup
+    const wthAudio = new Audio('WTH.mp3');
+    wthAudio.loop = true;
+    window.addEventListener('DOMContentLoaded', () => {
+      wthAudio.play().catch(()=>{});
+    });
+
+    // Play/Pause toggle
+    const toggleBtn = document.getElementById('audio-toggle');
+    toggleBtn.addEventListener('click', () => {
+      if (wthAudio.paused) {
+        wthAudio.play();
+        toggleBtn.textContent = '❚❚';
+      } else {
+        wthAudio.pause();
+        toggleBtn.textContent = '▶︎';
+      }
+    });
+
+    // content-ui → content.html
+    document.getElementById('content-ui')
+      .addEventListener('click', () => location.href = 'content.html');
+
+    // xb.png → index.html
+    document.getElementById('btn-xb')
+      .addEventListener('click', () => location.href = 'index.html');
+  </script>
+</body>
+</html>

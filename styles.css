@@ -1,0 +1,285 @@
+/* styles.css */
+
+/* 1) Reset / Normalize + consistent box-sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+/* 2) Your existing styles, with vendor prefixes added where needed */
+
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: -ms-flexbox;         /* IE10 */
+  display: flex;
+  -ms-flex-pack: center;        /* IE10 */
+  justify-content: center;
+  -ms-flex-align: center;       /* IE10 */
+  align-items: center;
+  font-family: 'Press Start 2P', cursive;
+  background: url('CGG6.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.balance-display {
+  position: absolute;
+  top: 810px;
+  left: 890px;
+  font-size: 14px;
+  z-index: 3;
+}
+.balance-display .label {
+  color: white;
+}
+.balance-display #wallet,
+.balance-display .currency {
+  color: #3EDF00;
+}
+.balance-display.zero #wallet,
+.balance-display.zero .currency {
+  color: white;
+}
+
+.gallery-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background: rgba(0,0,0,0.5);
+  border: none;
+  cursor: pointer;
+  z-index: 3;
+}
+.gallery-btn::after { content: ''; }
+
+.random-image {
+  display: none;
+  position: absolute;
+  top: 46px;
+  left: 1352px;
+  width: 350px;
+  height: 250px;
+  object-fit: fill;
+  border: 2px solid rgba(255,255,255,0.5);
+  z-index: 3;
+}
+
+.game-container {
+  position: relative;
+  width: 1507px;
+  height: 744px;
+}
+
+#graph {
+  position: absolute;
+  top: 120px;
+  left: 350px;
+  width: 600px;
+  height: 300px;
+  background: transparent;
+  border: none;
+  z-index: 1;
+}
+
+.multiplier {
+  position: absolute;
+  top: 100px;
+  left: 47%;
+  transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  font-size: 24px;
+  background: rgba(0,0,0,0.5);
+  padding: 5px 10px;
+  border-radius: 5px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.balance {
+  position: absolute;
+  bottom: -240px;
+  left: 854px;
+  width: 350px;
+  text-align: right;
+  font-size: 20px;
+  color: rgb(62, 219, 0);
+  z-index: 2;
+}
+
+.status {
+  position: absolute;
+  bottom: 480px;
+  left: 590px;
+  width: 250px;
+  text-align: center;
+  font-size: 25px;
+  text-shadow: 0 0 3px #ffffff;
+  z-index: 2;
+}
+
+/* DOWN & UP buttons */
+.down-btn,
+.up-btn {
+  position: absolute;
+  top: 110%;
+  transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  width: 300px;
+  height: 100px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 3;
+}
+.down-btn { left: -15%; }
+.down-btn:hover { background: rgba(255,0,0,0.2); }
+.up-btn { right: -15%; left: auto; }
+.up-btn:hover { background: rgba(0,255,0,0.2); }
+
+/* MAX BET button */
+.max-btn {
+  position: absolute;
+  bottom: -5px;
+  left: 1090px;
+  width: 150px;
+  height: 90px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 3;
+  transform: translate(-50%, 0) scale(.72);
+  -ms-transform: translate(-50%, 0) scale(.72);
+  transform-origin: center center;
+}
+.max-btn:hover { background: rgba(255, 0, 0, 0); }
+
+/* detached – button */
+.bet-decrease-container {
+  position: absolute;
+  top: 95%;
+  left: 32.1%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.bet-decrease {
+  width: 108px;
+  height: 60px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* detached input box */
+.bet-input-container {
+  position: absolute;
+  top: 95%;
+  left: 48%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.bet-input {
+  width: 7ch;
+  padding: 5px;
+  font-size: 40px;
+  font-family: 'Press Start 2P', cursive;
+  text-align: center;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  outline: none;
+}
+
+/* detached + button */
+.bet-increase-container {
+  position: absolute;
+  top: 95%;
+  left: 62.2%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.bet-increase {
+  width: 108px;
+  height: 60px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Meme generator button */
+.meme-generator {
+  position: absolute;
+  top: 50px;
+  right: -200px;
+  width: 355px;
+  height: 250px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 3;
+}
+.meme-generator:hover {
+  background: rgba(0, 0, 0, 0);
+}
+
+/* Skull button */
+.skull-btn {
+  position: absolute;
+  top: 104%;
+  left: 7.3%;
+  width: 100px;
+  height: 100px;
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  cursor: pointer;
+  z-index: 3;
+  transform: translate(-50%,-50%) scale(.6);
+  -ms-transform: translate(-50%,-50%) scale(.6);
+  transform-origin: center center;
+}
+.skull-btn:hover {
+  background: rgba(0, 0, 0, 0);
+}
+
+/* WAGER MIRROR (non-editable number only) */
+.bet-mirror {
+  position: absolute;
+  top: 810px;
+  left: 420px;
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* NAVIGATION BUTTONS */
+.nav-btn {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: transparent;
+  color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 3;
+}
+
+#btn-subpage {
+  top:    -65px;
+  left:    -15px;
+}
+
+#btn-content {
+  top: -69px;
+  right:   1640px;
+}

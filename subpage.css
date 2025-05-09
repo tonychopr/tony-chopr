@@ -1,0 +1,86 @@
+:root {
+  /* CONTENT UI */
+  --content-top: 360px;
+  --content-left: calc(43% - 450px);
+  --content-width: 200px;
+
+  /* XB button */
+  --xb-top: 400px;
+  --xb-left: calc(50% + 450px);
+  --xb-width: 120px;
+
+  /* Play/Pause toggle */
+  --toggle-bottom: 20px;
+  --toggle-left: 20px;
+  --toggle-font-size: 16px;
+
+  /* Linktree position & scale (adjust these as needed) */
+  --linktree-top: 50px;
+  --linktree-left: 50px;
+  --linktree-font-size: 16px;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: url('STG.png') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.stg-container { /* empty container if needed */ }
+
+/* common to CONTENT UI & XB */
+.button,
+#content-ui {
+  position: absolute;
+  user-select: none;
+  cursor: pointer;
+  z-index: 10;
+  height: auto;
+}
+
+/* CONTENT UI */
+#content-ui {
+  top: var(--content-top);
+  left: var(--content-left);
+  width: var(--content-width);
+  box-shadow: 0 0 0 0.25px white;
+}
+
+/* XB button */
+#btn-xb {
+  top: var(--xb-top);
+  left: var(--xb-left);
+  width: var(--xb-width);
+}
+
+/* Play/Pause toggle */
+#audio-toggle {
+  position: absolute;
+  bottom: var(--toggle-bottom);
+  left: var(--toggle-left);
+  padding: 8px 12px;
+  font: inherit;
+  font-size: var(--toggle-font-size);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: 2px solid white;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Linktree button */
+#linktree {
+  position: absolute;
+  top: var(--linktree-top);
+  left: var(--linktree-left);
+  font-size: var(--linktree-font-size);
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 10;
+}

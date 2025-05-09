@@ -1,0 +1,95 @@
+/*────────────────────────────────────────────
+   content.css — “CONTENT PAGE” styling
+────────────────────────────────────────────*/
+
+/* Wrap entire layout and center */
+#fixed-scale-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Scaled layout */
+#fixed-scale {
+  position: relative;
+}
+
+/* Main layout */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: black;
+  font-family: 'Press Start 2P', cursive;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.content-container {
+  width: 1920px;
+  height: 1080px;
+  position: relative;
+}
+
+/* UI background */
+#content-ui {
+  width: 119%;
+  height: 100%;
+  object-fit: fill;
+  object-position: center center;
+}
+
+/* Buttons */
+.link-button {
+  position: absolute;
+  width: 300px;
+  height: auto;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* TG */
+#tg-link {
+  top: 700px;
+  left: 610px;
+}
+
+/* Sora */
+#sora-link {
+  top: 511px;
+  left: 1366px;
+}
+
+/* Game-style Home Button */
+#home-button {
+  position: absolute;
+  top: 40px;
+  left: 60px;
+  width: 200px;
+  height: auto;
+  cursor: pointer;
+  z-index: 15;
+  filter: drop-shadow(0 0 5px #00ffcc) drop-shadow(0 0 10px #00ffcc);
+  animation: pulse-glow 1.5s infinite ease-in-out;
+  transition: transform 0.2s ease;
+}
+#home-button:hover {
+  transform: scale(1.1);
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px #00ffcc) drop-shadow(0 0 10px #00ffcc);
+  }
+  50% {
+    filter: drop-shadow(0 0 15px #00ffcc) drop-shadow(0 0 25px #00ffcc);
+  }
+}
+
+/* Hide the GMM audio element visually */
+#gmm-audio {
+  display: none;
+}

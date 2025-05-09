@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Content Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="content.css" />
+</head>
+<body>
+  <div id="fixed-scale">
+    <div class="content-container">
+      <img src="CONTENT PAGE FIN.png" alt="Content Page Final" id="content-ui" />
+
+      <!-- TG Button -->
+      <img
+        src="TG.png"
+        alt="Telegram Link"
+        id="tg-link"
+        class="link-button"
+        onclick="window.open('https://t.me/+OICFc408TDxjNzk5', '_blank')"
+      />
+
+      <!-- Sora Button -->
+      <img
+        src="sora.png"
+        alt="Sora Link"
+        id="sora-link"
+        class="link-button"
+        onclick="window.open('https://sora.chatgpt.com/explore?user=tonyton', '_blank')"
+      />
+
+      <!-- Game-style Home Button -->
+      <img
+        src="home-btn.png"
+        alt="Home"
+        id="home-button"
+        onclick="location.href='subpage.html'"
+      />
+
+      <!-- Hidden HH.mp4 autoplay loop -->
+      <video id="hh-audio" autoplay loop muted playsinline style="display: none;">
+        <source src="HH.mp4" type="video/mp4" />
+      </video>
+
+      <!-- Hidden GMM.mp3 autoplay via Web Audio API -->
+      <audio id="gmm-audio" src="GMM.mp3" loop></audio>
+    </div>
+  </div>
+
+  <script>
+    function scaleToFit() {
+      const baseWidth = 1920;
+      const baseHeight = 1080;
+      const scaleX = window.innerWidth / baseWidth;
+      const scaleY = window.innerHeight / baseHeight;
+      const scale = Math.min(scaleX, scaleY);
+      const root = document.getElementById('fixed-scale');
+      root.style.zoom = scale;
+      root.style.width = baseWidth + 'px';
+      root.style.height = baseHeight + 'px';
+    }
+
+    window.addEventListener('resize', scaleToFit);
+    window.addEventListener('DOMContentLoaded', () => {
+      scaleToFit();
+
+      // play hidden video as before
+      const hh = document.getElementById('hh-audio');
+      hh.volume = 1.0;
+      hh.muted = false;
+      hh.play().catch(() => {
+        console.warn("Video autoplay blocked.");
+      });
+
+      // set up GMM.mp3 autoplay at 150% volume
+      const audioElem = document.getElementById('gmm-audio');
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      const ctx = new AudioContext();
+      const source = ctx.createMediaElementSource(audioElem);
+      const gainNode = ctx.createGain();
+      gainNode.gain.value = 1.5; // 150% volume
+      source.connect(gainNode).connect(ctx.destination);
+      audioElem.play().catch(() => {
+        console.warn("Audio autoplay blocked.");
+      });
+    });
+  </script>
+</body>
+</html>
