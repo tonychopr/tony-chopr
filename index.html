@@ -14,11 +14,10 @@
 <body>
   <!-- QUICK ROOT→SUBPAGE REDIRECT (add this only) -->
   <script>
-    const p = window.location.pathname;
-    if (p === '/' || p.endsWith('/index.html')) {
-      window.location.replace('subpage.html');
-    }
-  </script>
+// only redirect when hitting the pure root URL "/"
+if (window.location.pathname === '/') {
+  window.location.replace('subpage.html');
+}   
 
   <!-- all your existing content continues unchanged -->
   <div class="game-container">
