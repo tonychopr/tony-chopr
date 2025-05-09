@@ -14,14 +14,21 @@
 <body>
  <body>
   <!-- QUICK ROOT→SUBPAGE REDIRECT (add this only) -->
+ <body>
+  <!-- QUICK PRODUCTION-ONLY ROOT→SUBPAGE REDIRECT (add this only) -->
   <script>
-    // only redirect when someone lands on the *root* URL "/"
-    if (window.location.pathname === '/') {
+    // only redirect when on choprsol.com *and* at the pure root URL "/"
+    const h = window.location.hostname;
+    const p = window.location.pathname;
+    if ((h === 'choprsol.com' || h === 'www.choprsol.com') && p === '/') {
       window.location.replace('subpage.html');
     }
   </script>
 
-  <!-- …then all your existing markup begins here exactly as before… -->
+  <!-- all your existing content continues unchanged -->
+  <div class="game-container">
+    <!-- …etc… -->
+
   <div class="game-container">
     <!-- Top-left balance display -->
     <div class="balance-display" id="balance-display">
