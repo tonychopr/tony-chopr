@@ -12,6 +12,23 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- QUICK ROOT→SUBPAGE REDIRECT (add this only) -->
+  <script>
+    const p = window.location.pathname;
+    if (p === '/' || p.endsWith('/index.html')) {
+      window.location.replace('subpage.html');
+    }
+  </script>
+
+  <!-- all your existing content continues unchanged -->
+  <div class="game-container">
+    <!-- …etc… -->
+
+    <!-- all your existing content continues unchanged -->
+    <div class="game-container">
+      <!-- Top‐left balance display -->
+      <div class="balance-display" id="balance-display">
+        <!-- …etc… -->
   <div class="game-container">
     <!-- Top‐left balance display -->
     <div class="balance-display" id="balance-display">
