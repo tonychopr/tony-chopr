@@ -9,20 +9,20 @@
     href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-</head>
-<body>
-  <!-- REDIRECT ROOT "/" ON choprsol.com TO subpage.html -->
+12  <link rel="stylesheet" href="styles.css" />
+13  </head>
+14  <body>
+  <!-- REDIRECT ROOT “/” ON choprsol.com → subpage.html -->
   <script>
     const h = window.location.hostname;
     const p = window.location.pathname;
-    if ((h === 'choprsol.com' || h === 'www.choprsol.com') && p === '/') {
+    if ((h === 'choprsol.com' || h === 'www.choprsol.com')
+        && (p === '/' || p === '')) {
       window.location.href = 'subpage.html';
     }
   </script>
 
-  <!-- …all your existing markup continues here… -->
+  <!-- …followed immediately by your existing markup… -->
   <div class="game-container">
     <!-- etc. -->
   <div class="game-container">
