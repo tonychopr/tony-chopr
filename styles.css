@@ -11,8 +11,19 @@ html, body {
   width: 100%;
 }
 
-/* 2) Your existing styles, with vendor prefixes added where needed */
+/* 2) Button reset */
+button {
+  padding: 0;
+  border: none;
+  background: transparent;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  font-size: 0;
+  line-height: 1;
+}
 
+/* 3) Body background and flex centering */
 body {
   margin: 0;
   height: 100vh;
@@ -28,6 +39,7 @@ body {
   background-size: cover;
 }
 
+/* Balance display */
 .balance-display {
   position: absolute;
   top: 810px;
@@ -35,49 +47,43 @@ body {
   font-size: 14px;
   z-index: 3;
 }
-.balance-display .label {
-  color: white;
-}
+.balance-display .label { color: white; }
 .balance-display #wallet,
-.balance-display .currency {
-  color: #3EDF00;
-}
+.balance-display .currency { color: #3EDF00; }
 .balance-display.zero #wallet,
-.balance-display.zero .currency {
-  color: white;
-}
+.balance-display.zero .currency { color: white; }
 
+/* Gallery button */
 .gallery-btn {
   position: absolute;
   top: 20px;
   right: 20px;
   width: 40px;
   height: 40px;
-  background: rgba(0,0,0,0.5);
-  border: none;
-  cursor: pointer;
   z-index: 3;
 }
-.gallery-btn::after { content: ''; }
 
+/* Random image popup */
 .random-image {
   display: none;
   position: absolute;
-  top: 46px;
-  left: 1352px;
+  top: 70px;
+  right: 20px;
   width: 350px;
   height: 250px;
-  object-fit: fill;
+  object-fit: cover;
   border: 2px solid rgba(255,255,255,0.5);
   z-index: 3;
 }
 
+/* Main container */
 .game-container {
   position: relative;
   width: 1507px;
   height: 744px;
 }
 
+/* Crash graph */
 #graph {
   position: absolute;
   top: 120px;
@@ -85,16 +91,15 @@ body {
   width: 600px;
   height: 300px;
   background: transparent;
-  border: none;
   z-index: 1;
 }
 
+/* Multiplier display */
 .multiplier {
   position: absolute;
   top: 100px;
-  left: 47%;
+  left: 50%;
   transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
   font-size: 24px;
   background: rgba(0,0,0,0.5);
   padding: 5px 10px;
@@ -103,6 +108,7 @@ body {
   z-index: 2;
 }
 
+/* Secondary balance/text */
 .balance {
   position: absolute;
   bottom: -240px;
@@ -113,7 +119,6 @@ body {
   color: rgb(62, 219, 0);
   z-index: 2;
 }
-
 .status {
   position: absolute;
   bottom: 480px;
@@ -121,71 +126,54 @@ body {
   width: 250px;
   text-align: center;
   font-size: 25px;
-  text-shadow: 0 0 3px #ffffff;
+  text-shadow: 0 0 3px #fff;
   z-index: 2;
 }
 
 /* DOWN & UP buttons */
-.down-btn,
-.up-btn {
+.down-btn, .up-btn {
   position: absolute;
-  top: 110%;
-  transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
+  top: 820px;
   width: 300px;
   height: 100px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
   z-index: 3;
 }
-.down-btn { left: -15%; }
+.down-btn {
+  left: 50px;
+}
+.up-btn {
+  right: 50px;
+}
 .down-btn:hover { background: rgba(255,0,0,0.2); }
-.up-btn { right: -15%; left: auto; }
 .up-btn:hover { background: rgba(0,255,0,0.2); }
 
-/* MAX BET button */
+/* Max Bet */
 .max-btn {
   position: absolute;
-  bottom: -5px;
-  left: 1090px;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.72);
   width: 150px;
   height: 90px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
   z-index: 3;
-  transform: translate(-50%, 0) scale(.72);
-  -ms-transform: translate(-50%, 0) scale(.72);
-  transform-origin: center center;
 }
-.max-btn:hover { background: rgba(255, 0, 0, 0); }
+.max-btn:hover { opacity: 0.7; }
 
-/* detached – button */
-.bet-decrease-container {
-  position: absolute;
-  top: 95%;
-  left: 32.1%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  z-index: 2;
-}
-.bet-decrease {
-  width: 108px;
-  height: 60px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-/* detached input box */
+/* Bet controls */
+.bet-decrease-container,
+.bet-increase-container,
 .bet-input-container {
   position: absolute;
-  top: 95%;
-  left: 48%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
+  top: 680px;
   z-index: 2;
+}
+.bet-decrease-container { left: 32.1%; }
+.bet-input-container  { left: 48%; }
+.bet-increase-container { left: 62.2%; }
+.bet-decrease,
+.bet-increase {
+  width: 108px;
+  height: 60px;
 }
 .bet-input {
   width: 7ch;
@@ -194,96 +182,60 @@ body {
   font-family: 'Press Start 2P', cursive;
   text-align: center;
   background: rgba(0,0,0,0.5);
-  color: white;
-  border: none;
+  color: #fff;
   outline: none;
 }
 
-/* detached + button */
-.bet-increase-container {
-  position: absolute;
-  top: 95%;
-  left: 62.2%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  z-index: 2;
-}
-.bet-increase {
-  width: 108px;
-  height: 60px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-/* Meme generator button */
+/* Meme generator */
 .meme-generator {
   position: absolute;
   top: 50px;
-  right: -200px;
+  right: 20px;
   width: 355px;
   height: 250px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
   z-index: 3;
-}
-.meme-generator:hover {
-  background: rgba(0, 0, 0, 0);
 }
 
 /* Skull button */
 .skull-btn {
   position: absolute;
-  top: 104%;
-  left: 7.3%;
+  top: 900px;
+  left: 200px;
   width: 100px;
   height: 100px;
-  background: rgba(0, 0, 0, 0);
-  border: none;
-  cursor: pointer;
+  transform: translate(-50%,-50%) scale(0.6);
+  transform-origin: center;
   z-index: 3;
-  transform: translate(-50%,-50%) scale(.6);
-  -ms-transform: translate(-50%,-50%) scale(.6);
-  transform-origin: center center;
-}
-.skull-btn:hover {
-  background: rgba(0, 0, 0, 0);
 }
 
-/* WAGER MIRROR (non-editable number only) */
+/* Wager mirror */
 .bet-mirror {
   position: absolute;
   top: 810px;
   left: 420px;
   font-size: 14px;
-  color: rgb(255, 255, 255);
-  z-index: 3;
+  color: #fff;
   pointer-events: none;
+  z-index: 3;
 }
 
-/* NAVIGATION BUTTONS */
+/* Navigation buttons */
 .nav-btn {
   position: absolute;
   width: 60px;
   height: 60px;
-  background: transparent;
-  color: transparent;
-  border: none;
-  cursor: pointer;
   z-index: 3;
 }
-
 #btn-subpage {
-  top:    -65px;
-  left:    -15px;
+  top: 20px;
+  left: 20px;
+}
+#btn-content {
+  top: 20px;
+  left: 100px;
 }
 
-#btn-content {
-  top: -69px;
-  right:   1640px;
-}
-/* full‐screen scaling wrapper */
+/* full-screen scaling wrapper */
 html, body, #fixed-scale {
   margin: 0;
   padding: 0;
@@ -291,24 +243,4 @@ html, body, #fixed-scale {
   height: 100vh;
   overflow: hidden;
 }
-
-#fixed-scale {
-  position: relative;
-}
-
-.game-container {
- /* end of .game-container */
-}
-
-/* DEBUG: force-visible buttons */
-.down-btn,
-.up-btn,
-.nav-btn,
-#max-btn,
-#meme-btn,
-#skull-btn {
-  outline: 2px dashed magenta !important;
-  background-color: rgba(255, 0, 255, 0.2) !important;
-  width: 120px !important;
-  height: 80px !important;
-}
+#fixed-scale { position: relative; }
