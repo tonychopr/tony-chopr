@@ -283,3 +283,21 @@ body {
   top: -69px;
   right:   1640px;
 }
+/* full‐screen scaling wrapper */
+html, body, #fixed-scale {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#fixed-scale {
+  position: relative;
+}
+
+.game-container {
+  width: 1920px;
+  height: 1080px;
+  transform-origin: top left;
+}
