@@ -304,24 +304,4 @@
       const first = Math.floor(Math.random()*playlist.length);
       audio.src = playlist[first];
       audio.play();
-    });
-
-    // Skull button: only toggles pause/play of the current audio.
-    skullBtn.addEventListener('click', () => {
-      if (audio.paused) audio.play();
-      else              audio.pause();
-    });
-  </script>
-
-  <!-- ✨ ZOOM-LOCK FEATURE: COUNTERACT BROWSER ZOOM -->
-  <script>
-    function lockScale() {
-      const zoom = window.devicePixelRatio || 1;
-      document.querySelector('.game-container')
-              .style.transform = scale(${1/zoom});
-    }
-    window.addEventListener('load',  lockScale);
-    window.addEventListener('resize', lockScale);
-  </script>
-</body>
-</html>
+   
