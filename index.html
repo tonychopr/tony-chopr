@@ -12,27 +12,37 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- REDIRECT ROOT "/" ON choprsol.com TO subpage.html -->
+  <script>
+    const h = window.location.hostname;
+    const p = window.location.pathname;
+    if ((h === 'choprsol.com' || h === 'www.choprsol.com')
+        && (p === '/' || p === '')) {
+      window.location.href = 'subpage.html';
+    }
+  </script>
+
   <div class="game-container">
-    <!-- Top‐left balance display -->
+    <!-- Top-left balance display -->
     <div class="balance-display" id="balance-display">
       <span class="label">Balance:</span>
       <span id="wallet">620,000</span>
       <span class="currency">$CHOPR</span>
     </div>
 
-    <!-- NEW: non-editable wager mirror -->
+    <!-- Wager mirror -->
     <div class="bet-mirror">
       <span id="bet-mirror">100000</span>
     </div>
 
-    <!-- Top‐right gallery button -->
+    <!-- Gallery button -->
     <button class="gallery-btn"></button>
     <img id="random-image" class="random-image" />
 
     <div class="multiplier" id="multiplier">0%</div>
     <canvas id="graph" width="600" height="300"></canvas>
 
-    <!-- DOWN & UP wrappers -->
+    <!-- Down/Up bet buttons -->
     <div class="down-btn-wrapper">
       <button class="down-btn" onclick="placeBet('down')"></button>
     </div>
@@ -40,10 +50,10 @@
       <button class="up-btn" onclick="placeBet('up')"></button>
     </div>
 
-    <!-- MAX BET button -->
+    <!-- Max bet -->
     <button id="max-btn" class="max-btn"></button>
 
-    <!-- Detached – / input / + controls -->
+    <!-- Bet amount controls -->
     <div class="bet-decrease-container">
       <button class="bet-decrease">–</button>
     </div>
@@ -61,30 +71,40 @@
       <button class="bet-increase">+</button>
     </div>
 
+    <!-- Restored JS-updated balance display -->
     <div class="balance">
       <span class="label">Balance:</span>
       <span id="balance">620,000</span>
       <span class="currency">$CHOPR</span>
     </div>
+
     <div class="status" id="status">Place a bet to start!</div>
 
     <!-- Meme generator -->
     <button id="meme-btn" class="meme-generator"></button>
 
-    <!-- Skull button (plays/pauses shuffle playlist) -->
+    <!-- Skull (audio shuffle) -->
     <button id="skull-btn" class="skull-btn"></button>
 
-    <!-- Navigation buttons -->
-    <button id="btn-subpage" class="nav-btn" onclick="window.location.href='content.html'"></button>
-    <button id="btn-content" class="nav-btn" onclick="window.location.href='subpage.html'"></button>
+    <!-- Nav buttons -->
+    <button
+      id="btn-subpage"
+      class="nav-btn"
+      onclick="window.location.href='content.html'"
+    ></button>
+    <button
+      id="btn-content"
+      class="nav-btn"
+      onclick="window.location.href='subpage.html'"
+    ></button>
   </div>
 
   <script>
     // gallery logic
     const images = [
-      '/mnt/data/57944f77-e2bd-42b8-af40-002ae20844fb.png',
-      '/mnt/data/2a9b3206-aaca-4928-a3ac-942957d177be.png',
-      '/mnt/data/0fedfc9f-355d-4cf3-a187-e6dba97dcbf4.png'
+      './57944f77-e2bd-42b8-af40-002ae20844fb.png',
+      './2a9b3206-aaca-4928-a3ac-942957d177be.png',
+      './0fedfc9f-355d-4cf3-a187-e6dba97dcbf4.png'
     ];
     let lastImg = -1;
     document.querySelector('.gallery-btn').addEventListener('click', () => {
@@ -203,13 +223,11 @@
     function placeBet(type) {
       if (isRunning && betType===type) return endRound();
       if (isRunning) return;
-
       const amt = parseFloat(betInput.value)||0;
       let available = maxToggle? savedBalance: balance;
       if (amt<=0||amt>available){
         statDisp.textContent = 'Invalid bet amount!'; return;
       }
-
       bet=amt; betType=type;
       if (!maxToggle) balance -= bet;
       maxToggle=false;
@@ -221,14 +239,12 @@
     function endRound(){
       if (!isRunning&&points.length===0) return;
       isRunning=false; crashed=true;
-
       let raw = (betType==='down')?-currentValue:currentValue,
           pct    = Math.round(raw),
           absPct = Math.abs(pct),
           profit = Math.round(bet*(absPct/100)),
           win    = (betType==='up'&&currentValue>0)||
                    (betType==='down'&&currentValue<0);
-
       if (win){
         statDisp.textContent =
           `BET WON +${absPct}% (+${profit.toLocaleString()} $CHOPR)`;
@@ -241,12 +257,10 @@
         statDisp.style.color='#ff0000';
         balance += returned;
       }
-
       updateDisplays();
       bet=0; betType=null;
     }
 
-    // ± controls
     decBtn.addEventListener('click',()=>{
       let v=parseFloat(betInput.value)||0;
       v=Math.max(v-parseFloat(betInput.step),parseFloat(betInput.min));
@@ -259,7 +273,6 @@
     });
     betInput.addEventListener('input', updateMirror);
 
-    // MAX toggle
     maxBtn.addEventListener('click',()=>{
       if (!maxToggle){
         savedBalance=balance;
@@ -274,54 +287,49 @@
     });
 
     // Meme generator
-    const memes=['S100.png','S101.png','S102.png','S103.png','S104.png',
-                 'S105.png','S106.png','S107.png','S108.png','S109.png',
-                 'S110.png','S11.png','S110.png','S11.png','S133.png','S909.png','S900.png','S890.png','S888.png','S90.png','S090.png','S0001.png','S0291.png','S0019.png','S8819.png','S9910.png','S661.png','S9281.png','S1892.png','S29238.png','S3291.png','S2920.png','S2920.png','S29109.png','S2891.png','S92010.png'];
+    const memes=[
+      'S100.png','S101.png','S102.png','S103.png','S104.png',
+      'S105.png','S106.png','S107.png','S108.png','S109.png',
+      'S110.png','S11.png','S133.png','S909.png','S900.png',
+      'S890.png','S888.png','S90.png','S090.png','S0001.png',
+      'S0291.png','S0019.png','S8819.png','S9910.png','S661.png',
+      'S9281.png','S1892.png','S29238.png','S3291.png','S2920.png',
+      'S29109.png','S2891.png','S92010.png'
+    ];
     document.getElementById('meme-btn').addEventListener('click',()=>{
-      const idx = Math.floor(Math.random()*memes.length);
-      const img = document.getElementById('random-image');
-      img.src = memes[idx];
-      img.style.display = 'block';
+      const idx=Math.floor(Math.random()*memes.length);
+      const img=document.getElementById('random-image');
+      img.src=`./${memes[idx]}`; img.style.display='block';
     });
 
-    // —————— Shuffle‐play three MP3s ——————
-    const playlist = ['WSP.mp3','CMW.mp3','DN.mp3'];
-    const skullBtn = document.getElementById('skull-btn');
-    const audio    = new Audio();
-
-    // When a track ends, pick a different random one.
-    audio.addEventListener('ended', () => {
+    // Audio playlist
+    const playlist=['WSP.mp3','CMW.mp3','DN.mp3'];
+    const skullBtn=document.getElementById('skull-btn');
+    const audio=new Audio();
+    audio.addEventListener('ended',()=>{
       let next;
-      do {
-        next = Math.floor(Math.random()*playlist.length);
-      } while (playlist[next] === audio.src.split('/').pop());
-      audio.src = playlist[next];
-      audio.play();
+      do{ next=Math.floor(Math.random()*playlist.length); }
+      while(playlist[next]===audio.src.split('/').pop());
+      audio.src=playlist[next]; audio.play();
     });
-
-    // On load: pick a random track & play immediately.
-    window.addEventListener('DOMContentLoaded', () => {
-      const first = Math.floor(Math.random()*playlist.length);
-      audio.src = playlist[first];
-      audio.play();
+    window.addEventListener('DOMContentLoaded',()=>{
+      const first=Math.floor(Math.random()*playlist.length);
+      audio.src=playlist[first]; audio.play();
     });
-
-    // Skull button: only toggles pause/play of the current audio.
-    skullBtn.addEventListener('click', () => {
-      if (audio.paused) audio.play();
-      else              audio.pause();
+    skullBtn.addEventListener('click',()=>{
+      audio.paused?audio.play():audio.pause();
     });
   </script>
 
-  <!-- ✨ ZOOM-LOCK FEATURE: COUNTERACT BROWSER ZOOM -->
+  <!-- ✨ ZOOM-LOCK FEATURE -->
   <script>
-    function lockScale() {
-      const zoom = window.devicePixelRatio || 1;
+    function lockScale(){
+      const zoom=window.devicePixelRatio||1;
       document.querySelector('.game-container')
-              .style.transform = `scale(${1/zoom})`;
+              .style.transform=`scale(${1/zoom})`;
     }
-    window.addEventListener('load',  lockScale);
-    window.addEventListener('resize', lockScale);
+    window.addEventListener('load',lockScale);
+    window.addEventListener('resize',lockScale);
   </script>
 </body>
 </html>
