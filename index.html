@@ -12,6 +12,16 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- REDIRECT ROOT "/" ON choprsol.com TO subpage.html -->
+  <script>
+    const h = window.location.hostname;
+    const p = window.location.pathname;
+    if ((h === 'choprsol.com' || h === 'www.choprsol.com')
+        && (p === '/' || p === '')) {
+      window.location.href = 'subpage.html';
+    }
+  </script>
+
   <div class="game-container">
     <!-- Top‐left balance display -->
     <div class="balance-display" id="balance-display">
@@ -274,13 +284,19 @@
     });
 
     // Meme generator
-    const memes=['S100.png','S101.png','S102.png','S103.png','S104.png',
-                 'S105.png','S106.png','S107.png','S108.png','S109.png',
-                 'S110.png','S11.png','S110.png','S11.png','S133.png','S909.png','S900.png','S890.png','S888.png','S90.png','S090.png','S0001.png','S0291.png','S0019.png','S8819.png','S9910.png','S661.png','S9281.png','S1892.png','S29238.png','S3291.png','S2920.png','S2920.png','S29109.png','S2891.png','S92010.png'];
+    const memes=[
+      'S100.png','S101.png','S102.png','S103.png','S104.png',
+      'S105.png','S106.png','S107.png','S108.png','S109.png',
+      'S110.png','S11.png','S133.png','S909.png','S900.png',
+      'S890.png','S888.png','S90.png','S090.png','S0001.png',
+      'S0291.png','S0019.png','S8819.png','S9910.png','S661.png',
+      'S9281.png','S1892.png','S29238.png','S3291.png','S2920.png',
+      'S29109.png','S2891.png','S92010.png'
+    ];
     document.getElementById('meme-btn').addEventListener('click',()=>{
       const idx = Math.floor(Math.random()*memes.length);
       const img = document.getElementById('random-image');
-      img.src = memes[idx];
+      img.src = `./${memes[idx]}`;
       img.style.display = 'block';
     });
 
