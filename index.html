@@ -113,4 +113,215 @@
           maxBtn          = document.getElementById('max-btn'),
           balanceDisplay  = document.getElementById('balance-display');
 
-    
+    const maxPoints = 100;
+    let balance       = 620000,
+        savedBalance  = 0,
+        maxToggle     = false,
+        bet           = 0,
+        betType       = null,
+        isRunning     = false,
+        crashed       = false,
+        points        = [],
+        currentValue  = 0,
+        crashPoint    = 0;
+
+    function updateDisplays() {
+      balDisp.textContent    = balance.toLocaleString();
+      walletDisp.textContent = balance.toLocaleString();
+      if (balance === 0) balanceDisplay.classList.add('zero');
+      else               balanceDisplay.classList.remove('zero');
+
+      if (balance <= 0 && parseFloat(betInput.value) <= 0) {
+        downBtn.disabled = upBtn.disabled = true;
+        statDisp.textContent = 'No funds to bet!';
+      } else {
+        downBtn.disabled = upBtn.disabled = false;
+      }
+    }
+    function updateMirror() {
+      betMirror.textContent = betInput.value;
+    }
+    updateDisplays();
+    updateMirror();
+
+    function drawGraph() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.beginPath();
+      ctx.strokeStyle = '#e94560';
+      ctx.lineWidth   = 2;
+      points.forEach((v, i) => {
+        const x = (i / (maxPoints - 1)) * canvas.width;
+        const y = canvas.height - ((v + 100) / 200) * canvas.height;
+        i === 0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+      });
+      ctx.stroke();
+      if (crashed) {
+        const last = points[points.length-1],
+              cx   = canvas.width,
+              cy   = canvas.height - ((last+100)/200)*canvas.height;
+        ctx.fillStyle = '#ff0000';
+        ctx.beginPath();
+        ctx.arc(cx, cy, 5, 0, Math.PI*2);
+        ctx.fill();
+      }
+    }
+
+    function startRound() {
+      if (isRunning || bet <= 0) return;
+      isRunning = true; crashed = false;
+      points = []; currentValue = 0;
+      crashPoint = (Math.random()*200)*(Math.random()<0.5?1:-1);
+      statDisp.textContent = 'Round started!';
+      const iv = setInterval(() => {
+        if (crashed) { clearInterval(iv); return; }
+        if (Math.random() < 0.01) {
+          currentValue = Math.random()<0.5?-99:800;
+          points.push(currentValue);
+          drawGraph();
+          crashed = true; isRunning = false;
+          return endRound();
+        }
+        const step = (Math.random()*8+1)*(Math.random()<0.5?1:-1);
+        currentValue += step;
+        points.push(currentValue);
+        if (points.length>maxPoints) points.shift();
+
+        let raw = (betType==='down')?-currentValue:currentValue;
+        const pct = Math.round(raw),
+              sign = pct>=0?'+':'-';
+        mulDisp.textContent = ${sign}${Math.abs(pct)}%;
+        mulDisp.style.color = pct>=0?'#00ff00':'#ff0000';
+
+        drawGraph();
+        if ((crashPoint>=0&&currentValue>=crashPoint)||
+            (crashPoint<0&&currentValue<=crashPoint)) {
+          crashed = true; isRunning = false; endRound();
+        }
+      },50);
+    }
+
+    function placeBet(type) {
+      if (isRunning && betType===type) return endRound();
+      if (isRunning) return;
+
+      const amt = parseFloat(betInput.value)||0;
+      let available = maxToggle? savedBalance: balance;
+      if (amt<=0||amt>available){
+        statDisp.textContent = 'Invalid bet amount!'; return;
+      }
+
+      bet=amt; betType=type;
+      if (!maxToggle) balance -= bet;
+      maxToggle=false;
+      updateDisplays();
+      statDisp.textContent = Bet ${bet.toLocaleString()} on ${type.toUpperCase()};
+      startRound();
+    }
+
+    function endRound(){
+      if (!isRunning&&points.length===0) return;
+      isRunning=false; crashed=true;
+
+      let raw = (betType==='down')?-currentValue:currentValue,
+          pct    = Math.round(raw),
+          absPct = Math.abs(pct),
+          profit = Math.round(bet*(absPct/100)),
+          win    = (betType==='up'&&currentValue>0)||
+                   (betType==='down'&&currentValue<0);
+
+      if (win){
+        statDisp.textContent =
+          BET WON +${absPct}% (+${profit.toLocaleString()} $CHOPR);
+        statDisp.style.color='#00ff00';
+        balance += bet+profit;
+      } else {
+        const returned = bet - profit;
+        statDisp.textContent =
+          BET LOST -${absPct}% (-${profit.toLocaleString()} $CHOPR);
+        statDisp.style.color='#ff0000';
+        balance += returned;
+      }
+
+      updateDisplays();
+      bet=0; betType=null;
+    }
+
+    // ± controls
+    decBtn.addEventListener('click',()=>{
+      let v=parseFloat(betInput.value)||0;
+      v=Math.max(v-parseFloat(betInput.step),parseFloat(betInput.min));
+      betInput.value=v; updateDisplays(); updateMirror();
+    });
+    incBtn.addEventListener('click',()=>{
+      let v=parseFloat(betInput.value)||0;
+      v+=parseFloat(betInput.step);
+      betInput.value=v; updateDisplays(); updateMirror();
+    });
+    betInput.addEventListener('input', updateMirror);
+
+    // MAX toggle
+    maxBtn.addEventListener('click',()=>{
+      if (!maxToggle){
+        savedBalance=balance;
+        betInput.value=savedBalance;
+        balance=0;
+      } else {
+        betInput.value=0;
+        balance=savedBalance;
+      }
+      maxToggle=!maxToggle;
+      updateDisplays(); updateMirror();
+    });
+
+    // Meme generator
+    const memes=['S100.png','S101.png','S102.png','S103.png','S104.png',
+                 'S105.png','S106.png','S107.png','S108.png','S109.png',
+                 'S110.png','S11.png','S110.png','S11.png','S133.png','S909.png','S900.png','S890.png','S888.png','S90.png','S090.png','S0001.png','S0291.png','S0019.png','S8819.png','S9910.png','S661.png','S9281.png','S1892.png','S29238.png','S3291.png','S2920.png','S2920.png','S29109.png','S2891.png','S92010.png'];
+    document.getElementById('meme-btn').addEventListener('click',()=>{
+      const idx = Math.floor(Math.random()*memes.length);
+      const img = document.getElementById('random-image');
+      img.src = memes[idx];
+      img.style.display = 'block';
+    });
+
+    // —————— Shuffle‐play three MP3s ——————
+    const playlist = ['WSP.mp3','CMW.mp3','DN.mp3'];
+    const skullBtn = document.getElementById('skull-btn');
+    const audio    = new Audio();
+
+    // When a track ends, pick a different random one.
+    audio.addEventListener('ended', () => {
+      let next;
+      do {
+        next = Math.floor(Math.random()*playlist.length);
+      } while (playlist[next] === audio.src.split('/').pop());
+      audio.src = playlist[next];
+      audio.play();
+    });
+
+    // On load: pick a random track & play immediately.
+    window.addEventListener('DOMContentLoaded', () => {
+      const first = Math.floor(Math.random()*playlist.length);
+      audio.src = playlist[first];
+      audio.play();
+    });
+
+    // Skull button: only toggles pause/play of the current audio.
+    skullBtn.addEventListener('click', () => {
+      if (audio.paused) audio.play();
+      else              audio.pause();
+    });
+  </script>
+
+  <!-- ✨ ZOOM-LOCK FEATURE: COUNTERACT BROWSER ZOOM -->
+  <script>
+    function lockScale() {
+      const zoom = window.devicePixelRatio || 1;
+      document.querySelector('.game-container')
+              .style.transform = scale(${1/zoom});
+    }
+    window.addEventListener('load',  lockScale);
+    window.addEventListener('resize', lockScale);
+  </script>
+</body>
+</html>
