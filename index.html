@@ -12,16 +12,6 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- REDIRECT ROOT “/” ON choprsol.com → subpage.html -->
-  <script>
-    const h = window.location.hostname;
-    const p = window.location.pathname;
-    if ((h === 'choprsol.com' || h === 'www.choprsol.com')
-        && (p === '/' || p === '')) {
-      window.location.href = 'subpage.html';
-    }
-  </script>
-
   <div class="game-container">
     <!-- Top‐left balance display -->
     <div class="balance-display" id="balance-display">
@@ -71,13 +61,11 @@
       <button class="bet-increase">+</button>
     </div>
 
-    <!-- Restored JS-updated balance display -->
     <div class="balance">
       <span class="label">Balance:</span>
       <span id="balance">620,000</span>
       <span class="currency">$CHOPR</span>
     </div>
-
     <div class="status" id="status">Place a bet to start!</div>
 
     <!-- Meme generator -->
@@ -87,24 +75,16 @@
     <button id="skull-btn" class="skull-btn"></button>
 
     <!-- Navigation buttons -->
-    <button
-      id="btn-subpage"
-      class="nav-btn"
-      onclick="window.location.href='content.html'"
-    ></button>
-    <button
-      id="btn-content"
-      class="nav-btn"
-      onclick="window.location.href='subpage.html'"
-    ></button>
+    <button id="btn-subpage" class="nav-btn" onclick="window.location.href='content.html'"></button>
+    <button id="btn-content" class="nav-btn" onclick="window.location.href='subpage.html'"></button>
   </div>
 
   <script>
     // gallery logic
     const images = [
-      './57944f77-e2bd-42b8-af40-002ae20844fb.png',
-      './2a9b3206-aaca-4928-a3ac-942957d177be.png',
-      './0fedfc9f-355d-4cf3-a187-e6dba97dcbf4.png'
+      '/mnt/data/57944f77-e2bd-42b8-af40-002ae20844fb.png',
+      '/mnt/data/2a9b3206-aaca-4928-a3ac-942957d177be.png',
+      '/mnt/data/0fedfc9f-355d-4cf3-a187-e6dba97dcbf4.png'
     ];
     let lastImg = -1;
     document.querySelector('.gallery-btn').addEventListener('click', () => {
@@ -294,27 +274,22 @@
     });
 
     // Meme generator
-    const memes=[
-      'S100.png','S101.png','S102.png','S103.png','S104.png',
-      'S105.png','S106.png','S107.png','S108.png','S109.png',
-      'S110.png','S11.png','S133.png','S909.png','S900.png',
-      'S890.png','S888.png','S90.png','S090.png','S0001.png',
-      'S0291.png','S0019.png','S8819.png','S9910.png','S661.png',
-      'S9281.png','S1892.png','S29238.png','S3291.png','S2920.png',
-      'S29109.png','S2891.png','S92010.png'
-    ];
+    const memes=['S100.png','S101.png','S102.png','S103.png','S104.png',
+                 'S105.png','S106.png','S107.png','S108.png','S109.png',
+                 'S110.png','S11.png','S110.png','S11.png','S133.png','S909.png','S900.png','S890.png','S888.png','S90.png','S090.png','S0001.png','S0291.png','S0019.png','S8819.png','S9910.png','S661.png','S9281.png','S1892.png','S29238.png','S3291.png','S2920.png','S2920.png','S29109.png','S2891.png','S92010.png'];
     document.getElementById('meme-btn').addEventListener('click',()=>{
       const idx = Math.floor(Math.random()*memes.length);
       const img = document.getElementById('random-image');
-      img.src = `./${memes[idx]}`;
+      img.src = memes[idx];
       img.style.display = 'block';
     });
 
-    // Shuffle‐play three MP3s
+    // —————— Shuffle‐play three MP3s ——————
     const playlist = ['WSP.mp3','CMW.mp3','DN.mp3'];
     const skullBtn = document.getElementById('skull-btn');
     const audio    = new Audio();
 
+    // When a track ends, pick a different random one.
     audio.addEventListener('ended', () => {
       let next;
       do {
@@ -324,12 +299,14 @@
       audio.play();
     });
 
+    // On load: pick a random track & play immediately.
     window.addEventListener('DOMContentLoaded', () => {
       const first = Math.floor(Math.random()*playlist.length);
       audio.src = playlist[first];
       audio.play();
     });
 
+    // Skull button: only toggles pause/play of the current audio.
     skullBtn.addEventListener('click', () => {
       if (audio.paused) audio.play();
       else              audio.pause();
