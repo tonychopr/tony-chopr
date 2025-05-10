@@ -189,7 +189,7 @@
         let raw = (betType==='down')?-currentValue:currentValue;
         const pct = Math.round(raw),
               sign = pct>=0?'+':'-';
-        mulDisp.textContent = `${sign}${Math.abs(pct)}%`;
+        mulDisp.textContent = ${sign}${Math.abs(pct)}%;
         mulDisp.style.color = pct>=0?'#00ff00':'#ff0000';
 
         drawGraph();
@@ -214,7 +214,7 @@
       if (!maxToggle) balance -= bet;
       maxToggle=false;
       updateDisplays();
-      statDisp.textContent = `Bet ${bet.toLocaleString()} on ${type.toUpperCase()}`;
+      statDisp.textContent = Bet ${bet.toLocaleString()} on ${type.toUpperCase()};
       startRound();
     }
 
@@ -231,13 +231,13 @@
 
       if (win){
         statDisp.textContent =
-          `BET WON +${absPct}% (+${profit.toLocaleString()} $CHOPR)`;
+          BET WON +${absPct}% (+${profit.toLocaleString()} $CHOPR);
         statDisp.style.color='#00ff00';
         balance += bet+profit;
       } else {
         const returned = bet - profit;
         statDisp.textContent =
-          `BET LOST -${absPct}% (-${profit.toLocaleString()} $CHOPR)`;
+          BET LOST -${absPct}% (-${profit.toLocaleString()} $CHOPR);
         statDisp.style.color='#ff0000';
         balance += returned;
       }
@@ -318,7 +318,7 @@
     function lockScale() {
       const zoom = window.devicePixelRatio || 1;
       document.querySelector('.game-container')
-              .style.transform = `scale(${1/zoom})`;
+              .style.transform = scale(${1/zoom});
     }
     window.addEventListener('load',  lockScale);
     window.addEventListener('resize', lockScale);
