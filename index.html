@@ -229,18 +229,16 @@
           win    = (betType==='up'&&currentValue>0)||
                    (betType==='down'&&currentValue<0);
 
-      if (win){
-        statDisp.textContent =
-          `BET WON +${absPct}% (+${profit.toLocaleString()} $CHOPR)`;
-        statDisp.style.color='#00ff00';
-        balance += bet+profit;
-      } else {
-        const returned = bet - profit;
-        statDisp.textContent =
-          `BET LOST -${absPct}% (-${profit.toLocaleString()} $CHOPR)`;
-        statDisp.style.color='#ff0000';
-        balance += returned;
-      }
+if (win) {
+  statDisp.textContent = `BET WON +${absPct}% (+${profit.toLocaleString()} $CHOPR)`;
+  statDisp.style.color = '#00ff00';
+  balance += bet + profit;
+} else {
+  const returned = bet - profit;
+  statDisp.textContent = `BET LOST -${absPct}% (-${profit.toLocaleString()} $CHOPR)`;
+  statDisp.style.color = '#ff0000';
+  balance += returned;
+}
 
       updateDisplays();
       bet=0; betType=null;
