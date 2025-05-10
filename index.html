@@ -310,24 +310,15 @@
     });
   </script>
 
-<!-- ✨ ROBUST ZOOM-LOCK FEATURE -->
-<script>
-  function lockScale() {
-    // Use visualViewport.scale if available, otherwise fallback to DPR
-    const vv    = window.visualViewport;
-    const scale = vv ? vv.scale : (window.devicePixelRatio || 1);
-    document
-      .getElementById('fixed-scale')
-      .style.transform = `scale(${1/scale})`;
-  }
-
-  // Run on initial load
-  window.addEventListener('load', lockScale);
-
-  // Whenever the viewport resizes (including zoom changes)
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener('resize', lockScale);
-  } else {
+  <!-- ✨ ZOOM-LOCK FEATURE -->
+  <script>
+    function lockScale() {
+      const zoom = window.devicePixelRatio || 1;
+      document.querySelector('.game-container')
+              .style.transform = `scale(${1/zoom})`;
+    }
+    window.addEventListener('load',  lockScale);
     window.addEventListener('resize', lockScale);
-  }
-</script>
+  </script>
+</body>
+</html>
