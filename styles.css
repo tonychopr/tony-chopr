@@ -294,6 +294,7 @@ html, body, #fixed-scale {
 
 #fixed-scale {
   position: relative;
+  transform-origin: top left;
 }
 
 .game-container {
