@@ -1,4 +1,6 @@
-ng" type="image/png">
+<!DOCTYPE html><html lang="en">
+<head>
+  <link rel="icon" href="mug.png" type="image/png">
 
   <meta charset="UTF-8">
   <meta 
@@ -19,18 +21,15 @@ ng" type="image/png">
 /* remove focus outlines / tap highlights */
 *:focus {
   outline: none !important;
-}
-* {
-  -webkit-tap-highlight-color: transparent !important;
-}
+}{
+-webkit-tap-highlight-color: transparent !important;
+}  @keyframes hueRotate {
+0%   { filter: hue-rotate(0deg); }
+100% { filter: hue-rotate(360deg); }
+  }
+</style><!-- html2canvas for screenshot -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
-    @keyframes hueRotate {
-      0%   { filter: hue-rotate(0deg); }
-      100% { filter: hue-rotate(360deg); }
-    }
-  </style>
-  <!-- html2canvas for screenshot -->
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 <body>
   <!-- add this right after <body> -->
@@ -38,7 +37,7 @@ ng" type="image/png">
 <!-- drop this in your <body> -->
 <a
   id="x-logo-button"
-  href="https://x.com/i/communities/1921181819426283578"
+  href="https://x.com/i/communities/1928147792012489198"
   target="_blank"
   rel="noopener noreferrer"
 >
@@ -47,16 +46,13 @@ ng" type="image/png">
     alt="X Logo"
   />
 </a>
-
-
   <!-- in your <body>, replace your old audio tag with this: -->
 <audio
   id="halo-audio"
   src="halo.mp3"
   preload="auto"
   loop
-  autoplay
-></audio>
+  autoplay></audio>
 
   <!-- Full-page background video -->
   <video
@@ -65,10 +61,11 @@ ng" type="image/png">
     muted
     loop
     playsinline
-    preload="auto"
-  >
-    <source src="BG.mp4" type="video/mp4">
-    Your browser doesn’t support HTML5 video.
+    preload="auto"  >
+
+<source src="BG.mp4" type="video/mp4">
+Your browser doesn’t support HTML5 video.
+
   </video>
 
   <!-- bouncing chicken silhouette (10% larger, color-cycling) -->
@@ -85,8 +82,7 @@ ng" type="image/png">
       z-index: 0;
       pointer-events: none;
       animation: hueRotate 5s infinite linear;
-    "
-  >
+    "  >
 
   <!-- WRAP: only the overlays + base chicken go in here -->
   <div id="chicken-container">
@@ -107,69 +103,69 @@ ng" type="image/png">
         border: 2px solid white;
       "
     >
+<!-- Base chicken, centered -->
+<img
+  id="base-chicken"
+  src="base_chicken.png"
+  alt="Base Chicken"
+  style="
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 512px; height: auto;
+    z-index: 2;
+    pointer-events: none;
+  "
+>
 
-    <!-- Base chicken, centered -->
-    <img
-      id="base-chicken"
-      src="base_chicken.png"
-      alt="Base Chicken"
-      style="
-        position: fixed;
-        top: 50%; left: 50%;
-        transform: translate(-50%, -50%);
-        width: 512px; height: auto;
-        z-index: 2;
-        pointer-events: none;
-      "
-    >
+<!-- Head overlay (starts hidden) -->
+<img
+  id="head-overlay"
+  src=""
+  alt="Head Overlay"
+  style="
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 512px; height: auto;
+    z-index: 3;
+    pointer-events: none;
+    display: none;
+  "
+>
 
-    <!-- Head overlay (starts hidden) -->
-    <img
-      id="head-overlay"
-      src=""
-      alt="Head Overlay"
-      style="
-        position: fixed;
-        top: 50%; left: 50%;
-        transform: translate(-50%, -50%);
-        width: 512px; height: auto;
-        z-index: 3;
-        pointer-events: none;
-        display: none;
-      "
-    >
+<!-- Glasses overlay (starts hidden) -->
+<img
+  id="glass-overlay"
+  src=""
+  alt="Glasses Overlay"
+  style="
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 512px; height: auto;
+    z-index: 4;
+    pointer-events: none;
+    display: none;
+  "
+>
 
-    <!-- Glasses overlay (starts hidden) -->
-    <img
-      id="glass-overlay"
-      src=""
-      alt="Glasses Overlay"
-      style="
-        position: fixed;
-        top: 50%; left: 50%;
-        transform: translate(-50%, -50%);
-        width: 512px; height: auto;
-        z-index: 4;
-        pointer-events: none;
-        display: none;
-      "
-    >
+<!-- Shirt overlay (starts hidden) -->
+<img
+  id="shirt-overlay"
+  src=""
+  alt="Shirt Overlay"
+  style="
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 512px; height: auto;
+    z-index: 5;
+    pointer-events: none;
+    display: none;
+  "
+>
 
-    <!-- Shirt overlay (starts hidden) -->
-    <img
-      id="shirt-overlay"
-      src=""
-      alt="Shirt Overlay"
-      style="
-        position: fixed;
-        top: 50%; left: 50%;
-        transform: translate(-50%, -50%);
-        width: 512px; height: auto;
-        z-index: 5;
-        pointer-events: none;
-        display: none;
-      "
-    >
   </div>
   <!-- /#chicken-container -->
 
@@ -179,9 +175,9 @@ ng" type="image/png">
     transform: translateX(-50%); display:flex; gap:8px;
     z-index: 6;
   ">
-    <button id="btn-left"  class="ctrl-btn">◀</button>
+    <button id="btn-left"  class="ctrl-btn"></button>
     <button id="btn-head"  class="ctrl-btn">Head</button>
-    <button id="btn-right" class="ctrl-btn">▶</button>
+    <button id="btn-right" class="ctrl-btn"></button>
   </div>
 
   <!-- Glasses Retro controls -->
@@ -190,9 +186,9 @@ ng" type="image/png">
     transform: translateX(-50%); display:flex; gap:8px;
     z-index: 6;
   ">
-    <button id="btn-g-left"  class="ctrl-btn">◀</button>
+    <button id="btn-g-left"  class="ctrl-btn"></button>
     <button id="btn-glass"   class="ctrl-btn">Glasses</button>
-    <button id="btn-g-right" class="ctrl-btn">▶</button>
+    <button id="btn-g-right" class="ctrl-btn"></button>
   </div>
 
   <!-- Shirt Retro controls -->
@@ -201,9 +197,9 @@ ng" type="image/png">
     transform: translateX(-50%); display:flex; gap:8px;
     z-index: 6;
   ">
-    <button id="btn-s-left"  class="ctrl-btn">◀</button>
+    <button id="btn-s-left"  class="ctrl-btn"></button>
     <button id="btn-shirt"   class="ctrl-btn">Shirt</button>
-    <button id="btn-s-right" class="ctrl-btn">▶</button>
+    <button id="btn-s-right" class="ctrl-btn"></button>
   </div>
 
   <!-- Background Retro controls -->
@@ -212,9 +208,9 @@ ng" type="image/png">
     transform: translateX(-50%); display:flex; gap:8px;
     z-index: 6;
   ">
-    <button id="btn-bg-left"  class="ctrl-btn" style="background:black;color:white;">◀</button>
+    <button id="btn-bg-left"  class="ctrl-btn" style="background:black;color:white;"></button>
     <button id="btn-bg"       class="ctrl-btn" style="background:black;color:white;">Background</button>
-    <button id="btn-bg-right" class="ctrl-btn" style="background:black;color:white;">▶</button>
+    <button id="btn-bg-right" class="ctrl-btn" style="background:black;color:white;"></button>
   </div>
 
   <!-- SHARE UI at bottom center -->
@@ -246,15 +242,27 @@ ng" type="image/png">
     halo.volume = 0.5;
     halo.play();
 
-    // Random chicken SFX
-    const chickenSounds = ['CH00.mp3','CH01.mp3','CH02.mp3'];
-    const sfx = new Audio();
-    sfx.volume = 0.5;
-    function playRandomChickenSound() {
-      const choice = chickenSounds[Math.floor(Math.random()*chickenSounds.length)];
-      sfx.src = choice;
-      sfx.play();
-    }
+  // ↓ Replace your existing chickenSounds block with this:
+const chickenSounds = [
+  new Audio('./sounds/CH00.mp3'),
+  new Audio('./sounds/CH01.mp3'),
+  new Audio('./sounds/CH02.mp3')
+];
+
+// force-preload + set volume
+chickenSounds.forEach(sound => {
+  sound.preload = 'auto';
+  sound.load();      // ensure the browser actually fetches it
+  sound.volume = 0.5;
+});
+
+function playRandomChickenSound() {
+  const choice = chickenSounds[Math.floor(Math.random() * chickenSounds.length)];
+  choice.currentTime = 0;
+  choice.play().catch(err => {
+    console.warn('Chicken SFX play failed:', err);
+  });
+}
 
     // ----- HEAD logic -----
     const heads = [
@@ -275,7 +283,7 @@ ng" type="image/png">
         document.getElementById('btn-head').textContent = 'Head';
       } else {
         overlayH.style.display = '';
-        overlayH.src           = HEAD/HEAD0/${encodeURIComponent(f)};
+        overlayH.src           = `HEAD/HEAD0/${encodeURIComponent(f)}`;
         document.getElementById('btn-head').textContent = f.replace(/\s0\.png$/,'').trim();
       }
     }
@@ -295,7 +303,7 @@ ng" type="image/png">
         document.getElementById('btn-glass').textContent = 'Glasses';
       } else {
         overlayG.style.display = '';
-        overlayG.src           = glassses/glasses0/${encodeURIComponent(f)};
+        overlayG.src           = `glassses/glasses0/${encodeURIComponent(f)}`;
         document.getElementById('btn-glass').textContent = f.replace(/\s0\.png$/,'').trim();
       }
     }
@@ -315,14 +323,14 @@ ng" type="image/png">
         document.getElementById('btn-shirt').textContent = 'Shirt';
       } else {
         overlayS.style.display = '';
-        overlayS.src           = SHIRTHOODIE/SHIRTHOODIE%200/${encodeURIComponent(f)};
+        overlayS.src           = `SHIRTHOODIE/SHIRTHOODIE%200/${encodeURIComponent(f)}`;
         document.getElementById('btn-shirt').textContent = f.replace(/\s0\.png$/,'').trim();
       }
     }
     updateShirt();
 
     // ----- BACKGROUND logic -----
-    const backgrounds = ["","field.png","backrooms 0.png","slether chicken.png","chicken cooked.png","dotted chicken.png","weird ah chicken.png","alchemy hand.png","elegant chicken.png","cool chicken.png","ace.png","glass window.png","neet.png","ship.png","squid monster.png","peacock.png","80s.png","bathing chicken.png","shittin chicken.png","chillin chicken.png","ancient chicken fam.png","japanese chicken.png","coraline vibe.png","inverted face.png","blue toile.png","princess peaches castle.png","forest text book style.png","spotlight.png","grim reaper.png","dark cat.png","spiral.png","5 star.png","nice flowers.png","grapevine.png","tomato soup.png","CREEPY FACE.png","castle.png","cave.png","spongebob00.png","spongebob.png","kai room.png","BW village.png","psychedelic storm nature.png","swirl sky.png","psychedelic faces.png","tree.png","pink flowers.png","moon.png","swamp.png","troll park.png","abstract faces.png","turtle.png"];
+    const backgrounds = ["","field.png","backrooms 0.png","donda cover 0.png","donda cover 1.png","donda cover 2.png","slether chicken.png","chicken cooked.png","dotted chicken.png","weird ah chicken.png","alchemy hand.png","elegant chicken.png","cool chicken.png","ace.png","glass window.png","neet.png","ship.png","squid monster.png","peacock.png","80s.png","bathing chicken.png","shittin chicken.png","chillin chicken.png","ancient chicken fam.png","japanese chicken.png","coraline vibe.png","inverted face.png","blue toile.png","princess peaches castle.png","forest text book style.png","spotlight.png","grim reaper.png","dark cat.png","spiral.png","5 star.png","nice flowers.png","grapevine.png","tomato soup.png","CREEPY FACE.png","castle.png","cave.png","spongebob00.png","spongebob.png","kai room.png","BW village.png","psychedelic storm nature.png","swirl sky.png","psychedelic faces.png","tree.png","pink flowers.png","moon.png","swamp.png","troll park.png","abstract faces.png","turtle.png"];
     let bgIndex = 0;
     const overlayB = document.getElementById('background-overlay');
     document.getElementById('btn-bg-left').onclick  = () => { bgIndex=(bgIndex-1+backgrounds.length)%backgrounds.length; updateBackground(); playRandomChickenSound(); };
@@ -335,7 +343,7 @@ ng" type="image/png">
         document.getElementById('btn-bg').textContent = 'Background';
       } else {
         overlayB.style.display = '';
-        overlayB.src           = background/${encodeURIComponent(f)};
+        overlayB.src           = `background/${encodeURIComponent(f)}`;
         document.getElementById('btn-bg').textContent = f.replace(/\.png$/,'').trim();
       }
     }
@@ -394,8 +402,8 @@ ng" type="image/png">
 
     // Capture a fixed 512×768px box centered in the viewport
     btnCopy.addEventListener('click', () => {
-      const width = 517;
-      const height = 645;
+      const width = 516.8;
+      const height = 644.8;
       const x = (window.innerWidth  - width)  / 3.15;
       const y = (window.innerHeight - height) / 2;
 
@@ -454,16 +462,16 @@ halo.pause();
 btnToggle.addEventListener('click', () => {
   if (halo.paused) {
     halo.play().catch(()=>{});    // user gesture, so allowed
-    btnToggle.textContent = '🔊';
+    btnToggle.textContent = '';
   } else {
     halo.pause();
-    btnToggle.textContent = '🔈';
+    btnToggle.textContent = '';
   }
 });
 
   });
 </script>
-  <!-- 🔈 Sound Toggle Button -->
+  <!--  Sound Toggle Button -->
   <button
     id="btn-sound-toggle"
     style="
@@ -478,15 +486,14 @@ btnToggle.addEventListener('click', () => {
       padding: 8px 12px;
       border-radius: 4px;
       cursor: pointer;
-    "
-  >🔈</button>
+    "  ></button>
 
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       // 1) find your audio element
       const halo = document.getElementById('halo-audio');
       if (!halo) {
-        console.error('✨ Toggle script: <audio id="halo-audio"> not found');
+        console.error(' Toggle script: <audio id="halo-audio"> not found');
         return;
       }
 
@@ -497,16 +504,16 @@ btnToggle.addEventListener('click', () => {
 
       // 3) find the toggle button
       const btn = document.getElementById('btn-sound-toggle');
-      btn.textContent = '🔈';      // muted icon initially
+      btn.textContent = '';      // muted icon initially
 
       // 4) on click, toggle play/pause
       btn.addEventListener('click', () => {
         if (halo.paused) {
           halo.play().catch(err => console.warn('Play failed:', err));
-          btn.textContent = '🔊';
+          btn.textContent = '';
         } else {
           halo.pause();
-          btn.textContent = '🔈';
+          btn.textContent = '';
         }
       });
     });
